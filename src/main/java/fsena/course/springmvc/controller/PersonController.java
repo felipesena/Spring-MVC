@@ -23,28 +23,28 @@ public class PersonController {
     public String listPersons(Model model) {
         model.addAttribute("persons", personService.listPersons());
 
-        return "persons";
+        return "person/list";
     }
 
     @GetMapping("/person/{id}")
     public String getPerson(@PathVariable int id, Model model) {
         model.addAttribute("person", personService.getPersonById(id));
 
-        return "person";
+        return "person/show";
     }
 
     @GetMapping("/person/edit/{id}")
     public String editPerson(@PathVariable int id, Model model) {
         model.addAttribute("person", personService.getPersonById(id));
 
-        return "personform";
+        return "person/form";
     }
 
     @GetMapping("/person/new")
     public String newPerson(Model model) {
         model.addAttribute("person", Person.builder().build());
 
-        return "personform";
+        return "person/form";
     }
 
     @PostMapping("/person")
