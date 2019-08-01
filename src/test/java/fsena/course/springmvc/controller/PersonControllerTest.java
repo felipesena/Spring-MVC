@@ -1,6 +1,5 @@
 package fsena.course.springmvc.controller;
 
-import fsena.course.springmvc.model.Address;
 import fsena.course.springmvc.model.Person;
 import fsena.course.springmvc.service.PersonService;
 import org.junit.Before;
@@ -120,9 +119,9 @@ public class PersonControllerTest {
         .param("lastName", lastName)
         .param("email", email)
         .param("phoneNumber", phoneNumber)
-        .param("address.firstAddress", firstAddress)
-        .param("address.city", city)
-        .param("address.state", state))
+        .param("firstAddress", firstAddress)
+        .param("city", city)
+        .param("state", state))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/person/1"))
                 .andExpect(model().attribute("person", instanceOf(Person.class)))
@@ -131,7 +130,9 @@ public class PersonControllerTest {
                 .andExpect(model().attribute("person", hasProperty("lastName", is(lastName))))
                 .andExpect(model().attribute("person", hasProperty("email", is(email))))
                 .andExpect(model().attribute("person", hasProperty("phoneNumber", is(phoneNumber))))
-                .andExpect(model().attribute("person", hasProperty("address")));
+                .andExpect(model().attribute("person", hasProperty("firstAddress", is(firstAddress))))
+                .andExpect(model().attribute("person", hasProperty("city", is(city))))
+                .andExpect(model().attribute("person", hasProperty("state", is(state))));
 
         ArgumentCaptor<Person> boundPerson = ArgumentCaptor.forClass(Person.class);
         verify(personService).saveOrUpdatePerson(boundPerson.capture());
@@ -141,9 +142,9 @@ public class PersonControllerTest {
         assertEquals(lastName, boundPerson.getValue().getLastName());
         assertEquals(email, boundPerson.getValue().getEmail());
         assertEquals(phoneNumber, boundPerson.getValue().getPhoneNumber());
-        assertEquals(firstAddress, boundPerson.getValue().getAddress().getFirstAddress());
-        assertEquals(city, boundPerson.getValue().getAddress().getCity());
-        assertEquals(state, boundPerson.getValue().getAddress().getState());
+        assertEquals(firstAddress, boundPerson.getValue().getFirstAddress());
+        assertEquals(city, boundPerson.getValue().getCity());
+        assertEquals(state, boundPerson.getValue().getState());
     }
 
     @Test
@@ -167,19 +168,15 @@ public class PersonControllerTest {
         String email = "fulano.alves@email.com";
         String phoneNumber = "7070-7070";
 
-        Address address = Address.builder()
-                .firstAddress(firstAddress)
-                .city(city)
-                .state(state)
-                .build();
-
         Person person = Person.builder()
                 .id(id)
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
                 .phoneNumber(phoneNumber)
-                .address(address)
+                .firstAddress(firstAddress)
+                .city(city)
+                .state(state)
                 .build();
 
         return person;

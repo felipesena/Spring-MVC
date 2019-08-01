@@ -1,8 +1,8 @@
 package fsena.course.springmvc.service.impl;
 
-import fsena.course.springmvc.model.Address;
 import fsena.course.springmvc.model.Person;
 import fsena.course.springmvc.service.PersonService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Profile("map")
 public class PersonServiceImpl implements PersonService {
 
     private Map<Integer, Person> persons;
@@ -23,20 +24,16 @@ public class PersonServiceImpl implements PersonService {
     private void loadPersons() {
         persons = new HashMap<>();
 
-        Address address = Address.builder()
-                .city("Belo Horizonte")
-                .firstAddress("Rua dos Bobos")
-                .state("Minas Gerais")
-                .zipCode("99999")
-                .build();
-
         Person person1 = Person.builder()
                 .id(1)
                 .firstName("Fulano")
                 .lastName("da Silva")
-                .address(address)
                 .email("email@hotmail.com")
                 .phoneNumber("(31) 3333-3333")
+                .city("Belo Horizonte")
+                .firstAddress("Rua dos Bobos")
+                .state("Minas Gerais")
+                .zipCode("99999")
                 .build();
 
         persons.put(person1.getId(), person1);
@@ -45,9 +42,12 @@ public class PersonServiceImpl implements PersonService {
                 .id(2)
                 .firstName("Siclano")
                 .lastName("Alves")
-                .address(address)
                 .email("email@hotmail.com")
                 .phoneNumber("(31) 3333-3333")
+                .city("Belo Horizonte")
+                .firstAddress("Rua dos Bobos")
+                .state("Minas Gerais")
+                .zipCode("99999")
                 .build();
 
         persons.put(person2.getId(), person2);

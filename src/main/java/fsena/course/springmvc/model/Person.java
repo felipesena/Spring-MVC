@@ -29,6 +29,13 @@ public class Person {
 
     private String phoneNumber;
 
-    @OneToOne
-    private Address address;
+    private String firstAddress;
+
+    private String secondAddress;
+
+    private String city;
+
+    private String state;
+
+    private String zipCode;
 }

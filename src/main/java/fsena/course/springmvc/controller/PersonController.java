@@ -2,22 +2,18 @@ package fsena.course.springmvc.controller;
 
 import fsena.course.springmvc.model.Person;
 import fsena.course.springmvc.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@RequiredArgsConstructor
 @Controller
 public class PersonController {
 
-    private PersonService personService;
-
-    @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
+    private final PersonService personService;
 
     @GetMapping("/persons")
     public String listPersons(Model model) {
