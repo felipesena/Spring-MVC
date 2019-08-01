@@ -4,3 +4,7 @@ spring:
       enabled: true
   profiles:
     active: jpadao
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl

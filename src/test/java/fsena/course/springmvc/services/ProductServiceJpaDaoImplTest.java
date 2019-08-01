@@ -1,8 +1,7 @@
-package fsena.course.springmvc.service.impl;
+package fsena.course.springmvc.services;
 
 import fsena.course.springmvc.config.JpaIntegrationConfig;
-import fsena.course.springmvc.model.Person;
-import fsena.course.springmvc.service.PersonService;
+import fsena.course.springmvc.domain.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +14,21 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = JpaIntegrationConfig.class)
 @ActiveProfiles("jpadao")
-public class PersonServiceJpaDaoImplTest {
+public class ProductServiceJpaDaoImplTest {
 
-    private PersonService personService;
+    private ProductService productService;
 
     @Autowired
-    public void setPersonService(PersonService personService) {
-        this.personService = personService;
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
     @Test
     public void testListMethod() {
-        List<Person> persons = personService.listPersons();
 
-        assert persons.size() == 5;
+        List<Product> products = (List<Product>) productService.listAll();
+
+        assert products.size() == 5;
+
     }
 }
