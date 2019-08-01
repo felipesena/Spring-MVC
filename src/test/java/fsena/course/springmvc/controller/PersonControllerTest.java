@@ -1,6 +1,5 @@
 package fsena.course.springmvc.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fsena.course.springmvc.model.Address;
 import fsena.course.springmvc.model.Person;
 import fsena.course.springmvc.service.PersonService;
@@ -10,7 +9,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 

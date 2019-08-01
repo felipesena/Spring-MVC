@@ -5,13 +5,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Entity
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Version
+    private Integer version;
 
     private String firstName;
 
@@ -21,5 +29,6 @@ public class Person {
 
     private String phoneNumber;
 
+    @OneToOne
     private Address address;
 }
