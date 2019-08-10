@@ -1,19 +1,14 @@
 package fsena.course.springmvc.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class User implements DomainObject {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Version
-    private Integer version;
+public class User extends AbstractDomainClass {
 
     private String username;
 
@@ -21,6 +16,7 @@ public class User implements DomainObject {
     private String password;
 
     private String encryptedPassword;
+
     private Boolean enabled = true;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})

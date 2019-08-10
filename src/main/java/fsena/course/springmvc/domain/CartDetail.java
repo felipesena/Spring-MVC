@@ -1,19 +1,16 @@
 package fsena.course.springmvc.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class CartDetail implements DomainObject {
+public class CartDetail extends AbstractDomainClass {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Version
-    private Integer version;
+    private Integer quantity;
 
     @ManyToOne
     private Cart cart;
